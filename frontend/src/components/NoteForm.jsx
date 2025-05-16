@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CodeInput from './CodeInput'; // adjust the path as needed
 
 export default function NoteForm({ onAdd }) {
   const [title, setTitle] = useState('');
@@ -37,12 +38,7 @@ export default function NoteForm({ onAdd }) {
         <option value="Python">Python</option>
       </select>
 
-      <textarea
-        className="border p-2 w-full h-32 bg-transparent text-primary"
-        placeholder="Paste your code here"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-      />
+      <CodeInput value={code} onChange={setCode} />
 
       <textarea
         className="border p-2 w-full h-24 bg-transparent"

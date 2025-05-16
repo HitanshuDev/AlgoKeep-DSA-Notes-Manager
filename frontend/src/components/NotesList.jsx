@@ -15,6 +15,9 @@
 import { useState } from 'react';
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropupCircle } from "react-icons/io";
+import { cpp } from '@codemirror/lang-cpp';
+import CodeMirror from '@uiw/react-codemirror';
+import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 
 
 export default function NotesList({ notes }) {
@@ -42,10 +45,21 @@ export default function NotesList({ notes }) {
 
           {openIndex === index && (
             <div className="mt-4">
-              <pre className="bg-gray-200 p-2 text-sm overflow-auto max-h-60 whitespace-pre-wrap rounded">
-                {note.code}
-              </pre>
-              <p className="mt-2">{note.algorithm}</p>
+              
+              <CodeMirror
+                className='max-h-80 overflow-auto'
+                value={note.code}
+                theme={vscodeDark}
+                extensions={[cpp()]} // You can dynamically load based on note.language
+                readOnly={true}
+                basicSetup={{
+                  lineNumbers: true,
+                  highlightActiveLine: false,
+                  foldGutter: false,
+                }}
+              />
+
+              <p className="mt-2 text-primary">{note.algorithm}</p>
             </div>
           )}
         </div>
