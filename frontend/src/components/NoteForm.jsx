@@ -17,18 +17,18 @@ export default function NoteForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-4 rounded shadow">
-      <h2 className="text-xl font-bold">Add New Note</h2>
+    <form onSubmit={handleSubmit} className="space-y-4 bg-secondary p-4 rounded shadow">
+      <h2 className="text-xl font-bold text-tertiary">Add New Note</h2>
 
       <input
-        className="border p-2 w-full"
+        className="border p-2 w-full bg-transparent"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
       <select
-        className="border p-2 w-full"
+        className="border p-2 w-full bg-transparent text-primary"
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
       >
@@ -38,20 +38,20 @@ export default function NoteForm({ onAdd }) {
       </select>
 
       <textarea
-        className="border p-2 w-full h-32"
+        className="border p-2 w-full h-32 bg-transparent text-primary"
         placeholder="Paste your code here"
         value={code}
         onChange={(e) => setCode(e.target.value)}
       />
 
       <textarea
-        className="border p-2 w-full h-24"
+        className="border p-2 w-full h-24 bg-transparent"
         placeholder="Algorithm / Explanation"
         value={algorithm}
         onChange={(e) => setAlgorithm(e.target.value)}
       />
 
-      <button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded">
+      <button type="submit" className="bg-tertiary hover:bg-accent text-secondary px-4 py-2 rounded">
         Save Note
       </button>
     </form>

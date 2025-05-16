@@ -27,13 +27,13 @@ export default function NotesList({ notes }) {
   return (
     <div className="mt-6 space-y-4">
       {notes.map((note, index) => (
-        <div key={index} className="border p-4 bg-gray-50 rounded relative">
+        <div key={index} className="border p-4 bg-secondary rounded relative">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-lg font-semibold text-primary">
               {note.title} ({note.language})
             </h3>
             <button
-              className="text-3xl text-orange-600 hover:underline"
+              className="text-3xl text-tertiary hover:underline"
               onClick={() => toggleDropdown(index)}
             >
               {openIndex === index ?  <IoIosArrowDropupCircle /> : <IoIosArrowDropdown />}
