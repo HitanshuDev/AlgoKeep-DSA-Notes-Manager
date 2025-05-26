@@ -10,7 +10,7 @@ export default function Home() {
           A powerful DSA notebook to save, organize, and search your C++/Java algorithms.
         </p>
         <Link
-          to="/main"
+          to="/login"
           className="inline-block mt-6 bg-secondary text-darkText px-6 py-3 rounded shadow hover:bg-background"
         >
           Get Started

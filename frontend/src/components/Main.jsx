@@ -4,6 +4,7 @@ import NoteForm from './NoteForm';
 import NotesList from './NotesList';
 import { sampleNotes } from '../data/sampleNotes';
 import Search from './Search.jsx';
+import Header from './Header.jsx';
 
 function Main() {
   const [notes, setNotes] = useState(sampleNotes);
@@ -13,9 +14,9 @@ function Main() {
   };
 
   return (
-    <div className='bg-background'>
-      <div className="max-w-3xl bg-background mx-auto py-4 px-4">
-        <h1 className="text-3xl font-bold text-center text-tertiary mb-6">AlgoNotes</h1>
+    <div className='bg-background h-screen'>
+      <div className="max-w-3xl bg-background mx-auto px-4">
+        <Header />
         <NoteForm onAdd={addNote} />
         <Search />
         <NotesList notes={notes} />

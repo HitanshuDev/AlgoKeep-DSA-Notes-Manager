@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import NoteForm from './components/NoteForm';
-import NotesList from './components/NotesList';
-import { sampleNotes } from './data/sampleNotes';
-import Search from './components/Search.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home.jsx';
 import Main from './components/Main.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 
 const router = createBrowserRouter(
   [
@@ -15,6 +12,12 @@ const router = createBrowserRouter(
     },{
       path:"/main",
       element: <Main />
+    },{
+      path:"/login",
+      element: <Login />
+    },{
+      path:"/signup",
+      element: <Signup />
     }
   ]
 )
@@ -25,15 +28,6 @@ function App() {
     <div>
       <RouterProvider router={router} /> 
     </div>
-  //   <div className='bg-background'>
-  //     <div className="max-w-3xl bg-background mx-auto py-4 px-4">
-  //       <h1 className="text-3xl font-bold text-center text-tertiary mb-6">AlgoNotes</h1>
-  //       <NoteForm onAdd={addNote} />
-  //       <Search />
-  //       <NotesList notes={notes} />
-  //     </div>
-  //   </div>
-  // );
   )
 }
 

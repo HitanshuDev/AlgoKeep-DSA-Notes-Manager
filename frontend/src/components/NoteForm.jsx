@@ -22,7 +22,7 @@ export default function NoteForm({ onAdd }) {
       <h2 className="text-xl font-bold text-tertiary">Add New Note</h2>
 
       <input
-        className="border p-2 w-full bg-transparent"
+        className="border p-2 w-full bg-transparent text-primary"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -33,15 +33,15 @@ export default function NoteForm({ onAdd }) {
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
       >
-        <option value="C++">C++</option>
-        <option value="Java">Java</option>
-        <option value="Python">Python</option>
+        <option className = 'bg-background text-primary' value="C++">C++</option>
+        <option className = 'bg-background text-primary' value="Java">Java</option>
+        <option className = 'bg-background text-primary' value="Python">Python</option>
       </select>
 
       <CodeInput value={code} onChange={setCode} />
 
       <textarea
-        className="border p-2 w-full h-24 bg-transparent"
+        className="border p-2 w-full h-24 bg-transparent text-primary"
         placeholder="Algorithm / Explanation"
         value={algorithm}
         onChange={(e) => setAlgorithm(e.target.value)}
