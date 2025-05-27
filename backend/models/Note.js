@@ -6,10 +6,15 @@ const noteSchema = new mongoose.Schema({
   language: String,
   code: String,
   algorithm: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   }
 });
 
-module.exports = mongoose.model('Note', noteSchema);
+export default mongoose.model('Note', noteSchema);

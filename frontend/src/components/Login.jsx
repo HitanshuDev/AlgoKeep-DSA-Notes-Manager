@@ -27,6 +27,7 @@ function Login({ onLogin }) {
         onLogin(data.email);
       }
     } catch (err) {
+      console.log(err);
       setError('Network error');
     }
   };

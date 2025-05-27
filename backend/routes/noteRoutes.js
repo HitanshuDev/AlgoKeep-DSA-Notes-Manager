@@ -1,18 +1,28 @@
-// backend/routes/noteRoutes.js
 import express from 'express';
-const router = express.Router();
-import Note from '../models/Note';
+import Note from '../models/Note.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
-// GET all notes
+const router = express.Router();
+
+// Protect all routes below
+router.use(authMiddleware);
+
+// GET all notes for a user
 router.get('/', async (req, res) => {
-  const notes = await Note.find().sort({ createdAt: -1 });
+  const notes = await Note.find({ user: req.userId }).sort({ createdAt: -1 });
   res.json(notes);
 });
 
 // POST a new note
 router.post('/', async (req, res) => {
   const { title, language, code, algorithm } = req.body;
-  const newNote = new Note({ title, language, code, algorithm });
+  const newNote = new Note({
+    title,
+    language,
+    code,
+    algorithm,
+    user: req.userId
+  });
   await newNote.save();
   res.status(201).json(newNote);
 });

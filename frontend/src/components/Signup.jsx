@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Signup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -21,10 +22,11 @@ function Signup() {
       const res = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ name, email, password })
       });
 
       const data = await res.json();
+      console.log(data);
 
       if (!res.ok) {
         setError(data.message || 'Signup failed');
@@ -33,6 +35,7 @@ function Signup() {
         navigate('/login');
       }
     } catch (err) {
+      console.log(err);
       setError("Something went wrong. Try again.");
     }
   };
@@ -49,6 +52,15 @@ function Signup() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full p-2 mb-4 border rounded"
+        />
+        
+        <input
+          type="name"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
           className="w-full p-2 mb-4 border rounded"
         />

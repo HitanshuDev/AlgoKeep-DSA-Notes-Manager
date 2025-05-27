@@ -1,14 +1,23 @@
 // backend/server.js
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import noteRoutes from './routes/noteRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
+
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api/auth', authRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -17,6 +26,10 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .then(() => console.log('✅ MongoDB connected'))
 .catch(err => console.error('❌ Mongo error:', err));
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
 
 // Routes
 app.use('/api/notes', noteRoutes);
