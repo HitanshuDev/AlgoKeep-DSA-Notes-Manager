@@ -1,16 +1,54 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NoteForm from './NoteForm';
 import NotesList from './NotesList';
-import { sampleNotes } from '../data/sampleNotes';
 import Search from './Search.jsx';
 import Header from './Header.jsx';
 
 function Main() {
-  const [notes, setNotes] = useState(sampleNotes);
+  const [notes, setNotes] = useState([]);
+  const [error, setError] = useState(null);
 
-  const addNote = (note) => {
-    setNotes([note, ...notes]);
+  const token = localStorage.getItem('token');
+  console.log("token in Main.jsx:", token);
+
+  //fetch notes on component mount
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/notes', {
+          headers : {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+        const data = await res.json();
+        if(!res.ok) throw new Error(data.message || 'Failed to fetch notes');
+        setNotes(data.notes);
+      }catch(err){
+        setError(err.message);
+      }
+    };
+
+    fetchNotes();
+  }, [token]);
+
+  const addNote = async (note) => {
+    try{
+      const res = await fetch('http://localhost:5000/api/notes',{
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(note),
+      });
+
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.message || 'Failed to save note');
+      setNotes([data.note, ...notes]);
+    } catch (err){
+      setError(err.message);
+    }
   };
 
   return (

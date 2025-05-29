@@ -7,6 +7,9 @@ export default function NoteForm({ onAdd }) {
   const [code, setCode] = useState('');
   const [algorithm, setAlgorithm] = useState('');
 
+  const isDisabled = !title || !code || !algorithm;
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newNote = { title, language, code, algorithm };
@@ -47,9 +50,14 @@ export default function NoteForm({ onAdd }) {
         onChange={(e) => setAlgorithm(e.target.value)}
       />
 
-      <button type="submit" className="bg-tertiary hover:bg-accent text-secondary px-4 py-2 rounded">
-        Save Note
+      <button
+        type="submit"
+        disabled={isDisabled}
+        className={`bg-tertiary hover:bg-accent text-secondary px-4 py-2 rounded ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      >
+      Save Note
       </button>
+
     </form>
   );
 }

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Login({ onLogin }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); 
 
   const handleSubmit = async e => {
     e.preventDefault();
     setError(null);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -24,7 +26,8 @@ function Login({ onLogin }) {
       } else {
         // Save token in localStorage or state
         localStorage.setItem('token', data.token);
-        onLogin(data.email);
+        // onLogin(data.email);
+        navigate('/main');
       }
     } catch (err) {
       console.log(err);

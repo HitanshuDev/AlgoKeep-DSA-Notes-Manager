@@ -6,7 +6,7 @@ const noteSchema = new mongoose.Schema({
   language: String,
   code: String,
   algorithm: String,
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
