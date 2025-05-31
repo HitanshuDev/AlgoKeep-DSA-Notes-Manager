@@ -8,6 +8,8 @@ import Header from './Header.jsx';
 function Main() {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); 
+
 
   const token = localStorage.getItem('token');
   console.log("token in Main.jsx:", token);
@@ -52,12 +54,12 @@ function Main() {
   };
 
   return (
-    <div className='bg-background h-screen'>
+    <div className='bg-background min-h-screen'>
       <div className="max-w-3xl bg-background mx-auto px-4">
         <Header />
         <NoteForm onAdd={addNote} />
-        <Search />
-        <NotesList notes={notes} />
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+        <NotesList notes={notes} searchTerm={searchTerm} setNotes={setNotes} />
       </div>
     </div>
   );

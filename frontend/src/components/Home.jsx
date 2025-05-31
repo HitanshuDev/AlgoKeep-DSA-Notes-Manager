@@ -5,7 +5,7 @@ export default function Home() {
     <div className="bg-background text-primary min-h-screen font-sans">
       {/* Hero Section */}
       <header className="text-center py-16 px-6 bg-accent text-white">
-        <h1 className="text-4xl font-bold mb-4">AlgoNotes</h1>
+        <h1 className="text-4xl font-bold mb-4">AlgoKeep</h1>
         <p className="text-lg max-w-2xl mx-auto">
           A powerful DSA notebook to save, organize, and search your C++/Java algorithms.
         </p>
@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-400">
-        Built by You • <a className="hover:underline" href="https://github.com/your-username/algonotes-frontend">View on GitHub</a>
+        Built by Hitanshu Khandelwal • <a className="hover:underline" href="https://github.com/HitanshuDev">View on GitHub</a>
       </footer>
     </div>
   );

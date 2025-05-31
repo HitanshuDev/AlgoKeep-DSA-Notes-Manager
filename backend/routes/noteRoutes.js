@@ -41,5 +41,44 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
+// Delete a note by ID
+router.delete('/:id', authMiddleware, async (req, res) => {
+  try {
+    const note = await Note.findOneAndDelete({ _id: req.params.id, user: req.user });
+
+    if (!note) {
+      return res.status(404).json({ message: 'Note not found or unauthorized' });
+    }
+
+    res.status(200).json({ message: 'Note deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting note:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update a note by ID
+router.put('/:id', authMiddleware, async (req, res) => {
+  const { title, language, code, algorithm } = req.body;
+
+  try {
+    const note = await Note.findOneAndUpdate(
+      { _id: req.params.id, user: req.user},
+      { title, language, code, algorithm },
+      { new: true, runValidators: true }
+    );
+
+    if (!note) {
+      return res.status(404).json({ message: 'Note not found or unauthorized' });
+    }
+
+    res.status(200).json({ message: 'Note updated successfully', note });
+  } catch (err) {
+    console.error('Error updating note:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 
 export default router;
