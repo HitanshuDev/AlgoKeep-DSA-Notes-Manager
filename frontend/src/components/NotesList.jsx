@@ -21,7 +21,7 @@ export default function NotesList({ notes, setNotes }) {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/notes/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ export default function NotesList({ notes, setNotes }) {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/notes/${editNote._id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${editNote._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
