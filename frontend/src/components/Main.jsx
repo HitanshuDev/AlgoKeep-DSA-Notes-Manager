@@ -12,7 +12,6 @@ function Main() {
 
 
   const token = localStorage.getItem('token');
-  console.log("token in Main.jsx:", token);
 
   //fetch notes on component mount
   useEffect(() => {
