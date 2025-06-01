@@ -10,7 +10,7 @@ import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 app.use(cors({
-  origin: "https://algo-keep-dsa-notes-manager.vercel.app/",  // frontend URL
+  origin: "https://algo-keep-dsa-notes-manager.vercel.app",  // frontend URL
   credentials: true
 }));
 app.use(express.json());
