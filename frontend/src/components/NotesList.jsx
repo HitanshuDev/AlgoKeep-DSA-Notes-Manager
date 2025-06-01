@@ -5,7 +5,7 @@ import { cpp } from '@codemirror/lang-cpp';
 import CodeMirror from '@uiw/react-codemirror';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 
-export default function NotesList({ notes, setNotes }) {
+export default function NotesList({ notes, setNotes, searchTerm }) {
   const [openIndex, setOpenIndex] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [editNote, setEditNote] = useState({});
@@ -64,9 +64,16 @@ export default function NotesList({ notes, setNotes }) {
     }
   };
 
+    const filteredNotes = notes.filter(note =>
+    note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    note.language.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    note.algorithm.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
   return (
     <div className="mt-6 space-y-4 min-h-screen">
-      {notes.map((note, index) => (
+      {filteredNotes.map((note, index) => (
         <div key={note._id} className="border p-4 bg-secondary rounded relative">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold text-primary">
