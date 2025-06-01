@@ -18,7 +18,7 @@ function Main() {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/notes`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes`, {
           headers : {
             Authorization: `Bearer ${token}`,
           }
@@ -36,7 +36,7 @@ function Main() {
 
   const addNote = async (note) => {
     try{
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/notes`,{
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes`,{
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json',
