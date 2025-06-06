@@ -3,6 +3,7 @@ import CodeInput from './CodeInput'; // adjust the path as needed
 
 export default function NoteForm({ onAdd }) {
   const [title, setTitle] = useState('');
+  const [problem, setProblem] = useState('');
   const [language, setLanguage] = useState('C++');
   const [code, setCode] = useState('');
   const [algorithm, setAlgorithm] = useState('');
@@ -12,9 +13,10 @@ export default function NoteForm({ onAdd }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newNote = { title, language, code, algorithm };
+    const newNote = { title, problem, language, code, algorithm };
     onAdd(newNote);
     setTitle('');
+    setProblem('');
     setLanguage('C++');
     setCode('');
     setAlgorithm('');
@@ -29,6 +31,13 @@ export default function NoteForm({ onAdd }) {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+      />
+      
+      <textarea
+        className="border p-2 w-full h-24 bg-transparent text-primary"
+        placeholder="Problem Statement"
+        value={problem}
+        onChange={(e) => setProblem(e.target.value)}
       />
 
       <select

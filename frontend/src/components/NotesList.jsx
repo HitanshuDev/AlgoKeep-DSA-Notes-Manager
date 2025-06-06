@@ -97,6 +97,15 @@ export default function NotesList({ notes, setNotes, searchTerm }) {
                     onChange={e => setEditNote({ ...editNote, title: e.target.value })}
                     className="w-full p-2 rounded bg-background text-primary border"
                   />
+
+                  <textarea
+                    value={editNote.problem}
+                    onChange={e => setEditNote({ ...editNote, problem: e.target.value })}
+                    className="w-full p-2 rounded bg-background text-primary border"
+                    rows={3}
+                    placeholder="Problem Statement"
+                  />
+
                   <CodeMirror
                     value={editNote.code}
                     theme={vscodeDark}
@@ -113,6 +122,8 @@ export default function NotesList({ notes, setNotes, searchTerm }) {
                 </>
               ) : (
                 <>
+                  <p className="text-primary"><strong>Problem:</strong> {note.problem}</p>
+
                   <CodeMirror
                     className="max-h-80 overflow-auto"
                     value={note.code}
