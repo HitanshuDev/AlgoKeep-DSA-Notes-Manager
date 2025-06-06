@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 const noteSchema = new mongoose.Schema({
   title: String,
+  problem: String,
   language: String,
   code: String,
   algorithm: String,

@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Create a new note
 router.post('/', authMiddleware, async (req, res) => {
-  const { title, language, code, algorithm } = req.body;
+  const { title, problem, language, code, algorithm } = req.body;
 
   if (!title || !language || !code || !algorithm) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -16,6 +16,7 @@ router.post('/', authMiddleware, async (req, res) => {
   try {
     const newNote = new Note({
       title,
+      problem,
       language,
       code,
       algorithm,
@@ -64,7 +65,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
   try {
     const note = await Note.findOneAndUpdate(
       { _id: req.params.id, user: req.user},
-      { title, language, code, algorithm },
+      { title,problem, language, code, algorithm },
       { new: true, runValidators: true }
     );
 
