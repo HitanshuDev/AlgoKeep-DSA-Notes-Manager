@@ -1,36 +1,34 @@
-DSA Problem Solver
-A web application for storing and reviewing Data Structures and Algorithms (DSA) problems, solutions, and explanations. This app allows users to keep track of important problems, save solutions, and easily reference them during interviews or while practicing DSA.
+# 🧠 AlgoKeep
 
-Features
-Add DSA Problems: Users can add new problems along with their solutions and difficulty level.
+A full-stack web application to save, view, and manage your **DSA code and algorithm notes**, built with the **MERN stack** (MongoDB, Express, React, Node.js). Designed as a personal coding notebook, it allows users to securely log in, save code snippets in C++/Java, and manage them efficiently with edit/delete/search capabilities.
 
-Categorization: Store problems in categories like "Arrays", "Linked Lists", "Dynamic Programming", etc.
+---
 
-Search & Filter: Easily search through problems based on keywords or filter by difficulty level.
+## 🚀 Features
 
-User Authentication: (Optional) Users can register and log in to store and manage their problems.
+- 🔐 **Authentication** with JWT (signup, login, logout)
+- 📝 **Create, edit, delete** DSA notes with title, language, code, and algorithm description
+- 🔎 **Search** your notes by title or language
+- 🎨 **Code Editor** with syntax highlighting using `@uiw/react-codemirror`
+- 🌓 **Dark Theme UI** using Tailwind CSS
+- 🧾 **Persistent storage** via MongoDB Atlas
+- 📦 Clean folder structure (MVC pattern for backend, modular React frontend)
+- 🌐 **Hosted on Vercel**
 
-Responsive Design: Works seamlessly across different screen sizes (mobile, tablet, desktop).
+---
 
-Tech Stack
-Frontend:
+## 🛠 Tech Stack
 
-React.js
+### Frontend
+- React.js (with Hooks)
+- Tailwind CSS
+- CodeMirror (`@uiw/react-codemirror`)
+- Icons from `react-icons`
 
-TailwindCSS (for styling)
+### Backend
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT for authentication
+- Bcrypt for password hashing
 
-React Router (for navigation)
-
-Backend:
-
-Node.js
-
-Express.js
-
-MongoDB (for storing problems and solutions)
-
-Mongoose (for interacting with MongoDB)
-
-Other:
-
-dotenv (for managing environment variables)
+---
