@@ -60,7 +60,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 
 // Update a note by ID
 router.put('/:id', authMiddleware, async (req, res) => {
-  const { title, language, code, algorithm } = req.body;
+  const { title, problem, language, code, algorithm } = req.body;
 
   try {
     const note = await Note.findOneAndUpdate(
