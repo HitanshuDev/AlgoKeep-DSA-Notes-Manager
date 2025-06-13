@@ -132,7 +132,7 @@ export default function NotesList({ notes, setNotes, searchTerm }) {
                     readOnly={true}
                   />
 
-                  <p className="text-primary"><strong>Algorithm:</strong> {note.problem}</p>
+                  <p className="text-primary"><strong>Algorithm:</strong></p>
 
                   <pre className="mt-2 text-primary max-h-80 overflow-auto" >{note.algorithm}</pre>
                 </>
