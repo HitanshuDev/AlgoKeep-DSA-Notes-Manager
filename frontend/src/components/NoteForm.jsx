@@ -7,6 +7,7 @@ export default function NoteForm({ onAdd }) {
   const [language, setLanguage] = useState('C++');
   const [code, setCode] = useState('');
   const [algorithm, setAlgorithm] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const isDisabled = !title || !code || !algorithm;
 
@@ -20,6 +21,43 @@ export default function NoteForm({ onAdd }) {
     setLanguage('C++');
     setCode('');
     setAlgorithm('');
+  };
+
+  const token = localStorage.getItem('token');
+
+  const handleGenerateAlgorithm = async () => {
+    if (!code) {
+      alert('Please write some code first.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-algorithm`, { // Replace with your GPT/Gemini API URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Add this if using an API key
+        },
+        body: JSON.stringify({
+          code: `Explain the algorithm of the following ${language} code and just give the body of the algorithm:\n\n${code}`,
+          // max_tokens: 500 // Adjust token limit based on API
+        })
+      });
+
+      const data = await res.json();
+      // Adjust this based on API's response structure
+      const generatedAlgorithm = data.algorithm || 'No response generated';
+
+
+      setAlgorithm(generatedAlgorithm);
+    } catch (err) {
+      console.error('Error generating algorithm:', err);
+      alert('Failed to generate algorithm');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,6 +89,24 @@ export default function NoteForm({ onAdd }) {
       </select>
 
       <CodeInput value={code} onChange={setCode} />
+
+      <div className="flex justify-between items-center">
+        <button
+          type="button"
+          onClick={handleGenerateAlgorithm}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          {loading ? 'Generating...' : 'Generate Algorithm'}
+        </button>
+
+        {/* <button
+          type="submit"
+          disabled={isDisabled}
+          className={`bg-tertiary hover:bg-accent text-secondary px-4 py-2 rounded ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          Save Note
+        </button> */}
+      </div>
 
       <textarea
         className="border p-2 w-full h-24 bg-transparent text-primary"

@@ -131,7 +131,10 @@ export default function NotesList({ notes, setNotes, searchTerm }) {
                     extensions={[cpp()]}
                     readOnly={true}
                   />
-                  <p className="mt-2 text-primary">{note.algorithm}</p>
+
+                  <p className="text-primary"><strong>Algorithm:</strong> {note.problem}</p>
+
+                  <pre className="mt-2 text-primary max-h-80 overflow-auto" >{note.algorithm}</pre>
                 </>
               )}
             </div>

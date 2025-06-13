@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import noteRoutes from './routes/noteRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import geminiapi from './routes/geminiapi.js';
 
 const app = express();
 app.use(cors({
@@ -29,6 +30,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
+app.use('/api/generate-algorithm', geminiapi);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
