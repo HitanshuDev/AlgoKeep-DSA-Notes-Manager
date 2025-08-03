@@ -9,7 +9,6 @@ function Header() {
 
         <div className='text-tertiary flex gap-6'>
             <a href='/' className='cursor-pointer hover:underline'>Home</a>
-            {/* <a className='cursor-pointer hover:underline'>Bookmark</a> */}
             <LogoutButton />
         </div>
     </div>

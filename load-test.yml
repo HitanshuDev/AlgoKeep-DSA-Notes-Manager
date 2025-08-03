@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:5000'  # or your deployed backend URL
+  phases:
+    - duration: 60
+      arrivalRate: 20  # 20 new users per second = ~1200 requests/minute
+  defaults:
+    headers:
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2QzMmU5NWIxMTlkMDY0YTczM2MzZCIsImlhdCI6MTc1NDIyOTA2MywiZXhwIjoxNzU0MjMyNjYzfQ.6uygJIo7Xbr72NToc3iUkIjYcIKW5te-djK71tVUvwI"  # if your route is protected
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Get all notes"
+    flow:
+      - get:
+          url: "/api/notes"

@@ -1,6 +1,19 @@
 DSA Problem Solver
 A web application for storing and reviewing Data Structures and Algorithms (DSA) problems, solutions, and explanations. This app allows users to keep track of important problems, save solutions, and easily reference them during interviews or while practicing DSA.
 
+To run locally
+
+    enter frontend folder
+    cd frontend
+    npm start
+
+    after that 
+    open new terminal
+    cd backend 
+    node server.js
+
+    
+
 Features
 Add DSA Problems: Users can add new problems along with their solutions and difficulty level.
 
@@ -34,3 +47,5 @@ Mongoose (for interacting with MongoDB)
 Other:
 
 dotenv (for managing environment variables)
+
+![alt text](image.png)

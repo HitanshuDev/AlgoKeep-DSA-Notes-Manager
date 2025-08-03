@@ -41,7 +41,7 @@ export default function NoteForm({ onAdd }) {
           'Authorization': `Bearer ${token}` // Add this if using an API key
         },
         body: JSON.stringify({
-          code: `Explain the algorithm of the following ${language} code and just give the body of the algorithm:\n\n${code}`,
+          code: `${code}`,
           // max_tokens: 500 // Adjust token limit based on API
         })
       });
